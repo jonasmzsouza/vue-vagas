@@ -8,30 +8,41 @@
 
     <div class="row mt-3">
       <div class="col">
-        <labal class="form-label">Titulo da vaga</labal>
-        <input type="text" class="form-control" />
+        <label class="form-label">Titulo da vaga</label>
+        <input type="text" class="form-control" v-model="titulo" />
         <div class="form-text">Por exemplo: Programador JavaScripte VueJS.</div>
       </div>
     </div>
 
     <div class="row mt-3">
       <div class="col">
-        <labal class="form-label">Titulo da vaga</labal>
-        <textarea type="text" class="form-control" rows="5"></textarea>
+        <label class="form-label">Titulo da vaga</label>
+        <textarea
+          type="text"
+          class="form-control"
+          rows="5"
+          v-model="descricao"
+        ></textarea>
         <div class="form-text">Informe os detalhes da vaga.</div>
       </div>
     </div>
 
     <div class="row mt-3">
       <div class="col">
-        <labal class="form-label">Salário</labal>
-        <input type="number" class="form-control" />
+        <label class="form-label">Salário</label>
+        <input type="number" class="form-control" v-model="salario" />
         <div class="form-text">Informe o salário.</div>
       </div>
 
       <div class="col">
-        <labal class="form-label">Modalidade</labal>
-        <select name="modalidade" id="modalidade" class="form-select">
+        <label class="form-label">Modalidade</label>
+        <select
+          name="modalidade"
+          id="modalidade"
+          class="form-select"
+          v-model="modalidade"
+        >
+          <option value="" disabled>--Selecione</option>
           <option value="1">Home Office</option>
           <option value="2">Presencial</option>
         </select>
@@ -39,8 +50,9 @@
       </div>
 
       <div class="col">
-        <labal class="form-label">Tipo</labal>
-        <select name="tipo" id="tipo" class="form-select">
+        <label class="form-label">Tipo</label>
+        <select name="tipo" id="tipo" class="form-select" v-model="tipo">
+          <option value="" disabled>--Selecione</option>
           <option value="1">CLT</option>
           <option value="2">PJ</option>
         </select>
@@ -50,7 +62,9 @@
 
     <div class="row mt-3">
       <div class="col">
-        <buttton:button class="btn btn-primary">Cadastrar</buttton:button>
+        <button type="button" class="btn btn-primary" @click="salvarVaga()">
+          Cadastrar
+        </button>
       </div>
     </div>
   </div>
@@ -59,5 +73,31 @@
 <script>
 export default {
   name: "PublicarVagaComponent",
+  data: () => ({
+    titulo: "",
+    descricao: "",
+    salario: "",
+    modalidade: "",
+    tipo: "",
+  }),
+  methods: {
+    salvarVaga() {
+      let data = new Date(Date.now());
+      let vagas = JSON.parse(localStorage.getItem("vagas"));
+
+      if (!vagas) vagas = [];
+
+      vagas.push({
+        titulo: this.titulo,
+        descricao: this.descricao,
+        salario: this.salario,
+        modalidade: this.modalidade,
+        tipo: this.tipo,
+        publicacao: data.toISOString(),
+      });
+
+      localStorage.setItem("vagas", JSON.stringify(vagas));
+    },
+  },
 };
 </script>
