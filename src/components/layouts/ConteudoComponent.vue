@@ -1,7 +1,5 @@
 <template>
   <div>
-    <button @click="conteudo = 'home-component'">Home</button>
-    <button @click="conteudo = 'publicar-vaga-component'">Publicar Vaga</button>
     <keep-alive>
       <component :is="conteudo" />
     </keep-alive>
@@ -14,13 +12,16 @@ import PublicarVagaComponent from "@/components/views/PublicarVagaComponent.vue"
 
 export default {
   name: "ConteudoComponent",
+  props: {
+    conteudo: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     HomeComponent,
     PublicarVagaComponent,
   },
-  data: () => ({
-    conteudo: "home-component",
-  }),
 };
 </script>
 
