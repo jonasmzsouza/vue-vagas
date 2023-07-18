@@ -13,7 +13,7 @@
     </div>
 
     <div class="row mt-5">
-      <div class="col col-md-4">
+      <div class="col my-2">
         <indicador-component
           titulo="Vagas abertas"
           indicador="20"
@@ -22,7 +22,7 @@
         />
       </div>
 
-      <div class="col col-md-4">
+      <div class="col my-2">
         <indicador-component
           titulo="Profissionais cadastrados"
           indicador="50"
@@ -31,7 +31,7 @@
         />
       </div>
 
-      <div class="col col-md-4">
+      <div class="col my-2">
         <indicador-component
           titulo="Visitantes online"
           :indicador="usuariosOnline"

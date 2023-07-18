@@ -6,17 +6,16 @@
 </template>
 
 <script>
-import TopoComponent from '@/components/layouts/TopoComponent.vue'
-import ConteudoComponent from '@/components/layouts/ConteudoComponent.vue'
+import TopoComponent from "@/components/layouts/TopoComponent.vue";
+import ConteudoComponent from "@/components/layouts/ConteudoComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TopoComponent,
-    ConteudoComponent
-  }
-}
+    ConteudoComponent,
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>
