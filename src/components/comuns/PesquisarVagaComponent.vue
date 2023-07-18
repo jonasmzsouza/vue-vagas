@@ -12,8 +12,8 @@
           />
           <small class="form-text text-muted"
             >Informe palavras que estejam relacionadas com o título da vaga que
-            você procura</small
-          >
+            você procura
+          </small>
         </div>
       </div>
     </div>
