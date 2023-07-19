@@ -87,16 +87,51 @@ export default {
 
       if (!vagas) vagas = [];
 
-      vagas.push({
-        titulo: this.titulo,
-        descricao: this.descricao,
-        salario: this.salario,
-        modalidade: this.modalidade,
-        tipo: this.tipo,
-        publicacao: data.toISOString(),
-      });
+      if (this.validaFormulario()) {
+        vagas.push({
+          titulo: this.titulo,
+          descricao: this.descricao,
+          salario: this.salario,
+          modalidade: this.modalidade,
+          tipo: this.tipo,
+          publicacao: data.toISOString(),
+        });
 
-      localStorage.setItem("vagas", JSON.stringify(vagas));
+        localStorage.setItem("vagas", JSON.stringify(vagas));
+        this.emitter.emit("alerta", {
+          feedback: "sucesso",
+          titulo: `A vaga ${this.titulo} foi cadastrada com sucesso!`,
+          descricao:
+            "Parabéns, a vaga foi cadastrada e poderá ser consultada por milhares de profissionais em nossa plataforma",
+        });
+
+        this.resetaFormulario();
+      } else {
+        this.emitter.emit("alerta", {
+          feedback: "erro",
+          titulo: "Oops... Não foi possível realizar o cadastro!",
+          descricao:
+            "Parace que você esqueceu de preencher alguma informação. Faça o ajuste e tente novamente. Obrigado!",
+        });
+      }
+    },
+    validaFormulario() {
+      let valido = true;
+
+      if (this.titulo === "") valido = false;
+      if (this.descricao === "") valido = false;
+      if (this.salario === "") valido = false;
+      if (this.modalidade === "") valido = false;
+      if (this.tipo === "") valido = false;
+
+      return valido;
+    },
+    resetaFormulario() {
+      this.titulo = "";
+      this.descricao = "";
+      this.salario = "";
+      this.modalidade = "";
+      this.tipo = "";
     },
   },
 };

@@ -66,7 +66,19 @@ export default {
 .div-vagas-favoritas {
   position: absolute;
   z-index: 1;
-  top: 70px;
-  right: 5px;
+  top: 9px;
+  right: 75px;
+}
+
+@media (min-width: 576px) {
+  .div-vagas-favoritas {
+    right: 25vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .div-vagas-favoritas {
+    right: 3vw;
+  }
 }
 </style>
