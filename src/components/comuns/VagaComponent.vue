@@ -7,7 +7,11 @@
             {{ titulo }}
           </div>
           <div class="form-check form-switch">
-            <input type="checkbox" class="form-check-input">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              v-model="favoritada"
+            />
             <label for="" class="form-check-label">Favoritar</label>
           </div>
         </div>
@@ -28,6 +32,18 @@
 <script>
 export default {
   name: "VagaComponent",
+  data: () => ({
+    favoritada: false,
+  }),
+  watch: {
+    favoritada(novoValor) {
+      if (novoValor) {
+        this.emitter.emit("favoritarVaga", this.titulo);
+      } else {
+        this.emitter.emit("desfavoritarVaga", this.titulo);
+      }
+    },
+  },
   props: {
     titulo: {
       type: String,

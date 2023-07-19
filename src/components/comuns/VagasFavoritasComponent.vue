@@ -28,7 +28,17 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="offcanvas-body">...</div>
+      <div class="offcanvas-body">
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            v-for="(vagaFavoritada, index) in vagasFavoritadas"
+            :key="index"
+          >
+            {{ vagaFavoritada }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +46,19 @@
 <script>
 export default {
   name: "VagasFavoritasComponent",
+  data: () => ({
+    vagasFavoritadas: [],
+  }),
+  mounted() {
+    this.emitter.on("favoritarVaga", (titulo) => {
+      this.vagasFavoritadas.push(titulo);
+    });
+
+    this.emitter.on("desfavoritarVaga", (titulo) => {
+      let indexArray = this.vagasFavoritadas.indexOf(titulo);
+      if (indexArray !== -1) this.vagasFavoritadas.splice(indexArray, 1);
+    });
+  },
 };
 </script>
 
