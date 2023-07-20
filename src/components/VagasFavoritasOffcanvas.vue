@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: "VagasFavoritasComponent",
+  name: "VagasFavoritasOffcanvas",
   data: () => ({
     vagasFavoritadas: [],
   }),

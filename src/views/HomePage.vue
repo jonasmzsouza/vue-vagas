@@ -2,58 +2,58 @@
   <div class="container py-4">
     <div class="row">
       <div class="col">
-        <pesquisar-vaga-component />
+        <pesquisar-vaga-form></pesquisar-vaga-form>
       </div>
     </div>
 
     <div class="row mt-5" v-for="(vaga, index) in vagas" :key="index">
       <div class="col">
-        <vaga-component v-bind="vaga" />
+        <vaga-card v-bind="vaga"></vaga-card>
       </div>
     </div>
 
     <div class="row mt-5">
       <div class="col my-2">
-        <indicador-component
+        <indicador-card
           titulo="Vagas abertas"
           indicador="20"
           bg="bg-dark"
           color="text-white"
-        />
+        ></indicador-card>
       </div>
 
       <div class="col my-2">
-        <indicador-component
+        <indicador-card
           titulo="Profissionais cadastrados"
           indicador="50"
           bg="bg-dark"
           color="text-white"
-        />
+        ></indicador-card>
       </div>
 
       <div class="col my-2">
-        <indicador-component
+        <indicador-card
           titulo="Visitantes online"
           :indicador="usuariosOnline"
           bg="bg-light"
           color="text-dark"
-        />
+        ></indicador-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IndicadorComponent from "@/components/comuns/IndicadorComponent.vue";
-import PesquisarVagaComponent from "@/components/comuns/PesquisarVagaComponent.vue";
-import VagaComponent from "@/components/comuns/VagaComponent.vue";
+import IndicadorCard from "@/components/IndicadorCard.vue";
+import PesquisarVagaForm from "@/components/PesquisarVagaForm.vue";
+import VagaCard from "@/components/VagaCard.vue";
 
 export default {
-  name: "HomeComponent",
+  name: "HomePage",
   components: {
-    IndicadorComponent,
-    PesquisarVagaComponent,
-    VagaComponent,
+    IndicadorCard,
+    PesquisarVagaForm,
+    VagaCard,
   },
   data: () => ({
     usuariosOnline: 0,

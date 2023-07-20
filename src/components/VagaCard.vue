@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "VagaComponent",
+  name: "VagaCard",
   props: {
     titulo: {
       type: String,

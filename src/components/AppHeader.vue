@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="navegarPara('HomeComponent')"
+            <a class="nav-link" href="#" @click="navegarPara('HomePage')"
               >Home</a
             >
           </li>
@@ -24,7 +24,7 @@
             <a
               class="nav-link"
               href="#"
-              @click="navegarPara('PublicarVagaComponent')"
+              @click="navegarPara('PublicarVagaPage')"
               >Publicar Vaga</a
             >
           </li>
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: "TopoComponent",
+  name: "AppHeader",
   methods: {
     navegarPara(p) {
       this.$emit("navegar", p);

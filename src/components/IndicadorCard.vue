@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "IndicadorComponent",
+  name: "IndicadorCard",
   props: ["titulo", "indicador", "bg", "color"],
   computed: {
     estilo() {

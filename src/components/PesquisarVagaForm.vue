@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "PesquisarVagaComponent",
+  name: "PesquisarVagaForm",
   data: () => ({
     titulo: "",
   }),

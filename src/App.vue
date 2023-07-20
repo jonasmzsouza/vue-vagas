@@ -1,33 +1,33 @@
 <template>
   <div>
-    <vagas-favoritas-component />
-    <topo-component @navegar="componente = $event" />
-    <alerta-component v-if="exibirAlerta" :feedback="alerta.feedback">
+    <vagas-favoritas-offcanvas></vagas-favoritas-offcanvas>
+    <app-header @navegar="componente = $event"></app-header>
+    <alerta-text v-if="exibirAlerta" :feedback="alerta.feedback">
       <template v-slot:titulo>
         <h5>{{ alerta.titulo }}</h5>
       </template>
       <p>{{ alerta.descricao }}</p>
-    </alerta-component>
-    <conteudo-component :conteudo="componente" />
+    </alerta-text>
+    <conteudo-layout :conteudo="componente"></conteudo-layout>
   </div>
 </template>
 
 <script>
-import AlertaComponent from "@/components/comuns/AlertaComponent.vue";
-import ConteudoComponent from "@/components/layouts/ConteudoComponent.vue";
-import TopoComponent from "@/components/layouts/TopoComponent.vue";
-import VagasFavoritasComponent from "@/components/comuns/VagasFavoritasComponent.vue";
+import AlertaText from "@/components/AlertaText.vue";
+import AppHeader from "@/components/AppHeader.vue";
+import ConteudoLayout from "@/layouts/ConteudoLayout.vue";
+import VagasFavoritasOffcanvas from "@/components/VagasFavoritasOffcanvas.vue";
 
 export default {
   name: "App",
   components: {
-    AlertaComponent,
-    ConteudoComponent,
-    TopoComponent,
-    VagasFavoritasComponent,
+    AlertaText,
+    AppHeader,
+    ConteudoLayout,
+    VagasFavoritasOffcanvas,
   },
   data: () => ({
-    componente: "HomeComponent",
+    componente: "HomePage",
     exibirAlerta: false,
     alerta: { titulo: "", descricao: "", feedback: "" },
   }),

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import HomeComponent from "@/components/views/HomeComponent.vue";
-import PublicarVagaComponent from "@/components/views/PublicarVagaComponent.vue";
+import HomePage from "@/views/HomePage.vue";
+import PublicarVagaPage from "@/views/PublicarVagaPage.vue";
 
 export default {
-  name: "ConteudoComponent",
+  name: "ConteudoLayout",
   props: {
     conteudo: {
       type: String,
@@ -19,8 +19,8 @@ export default {
     },
   },
   components: {
-    HomeComponent,
-    PublicarVagaComponent,
+    HomePage,
+    PublicarVagaPage,
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-4">
+  <div class="py-4">
     <div class="row">
       <div class="col">
         <h4>Apresente a sua vaga para milhares de profissionais e de graça</h4>
@@ -72,7 +72,7 @@
 
 <script>
 export default {
-  name: "PublicarVagaComponent",
+  name: "PublicarVagaForm",
   data: () => ({
     titulo: "",
     descricao: "",
