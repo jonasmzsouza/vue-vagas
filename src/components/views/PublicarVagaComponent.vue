@@ -79,6 +79,7 @@ export default {
     salario: "",
     modalidade: "",
     tipo: "",
+    favoritada: false,
   }),
   methods: {
     salvarVaga() {
@@ -95,6 +96,7 @@ export default {
           modalidade: this.modalidade,
           tipo: this.tipo,
           publicacao: data.toISOString(),
+          favoritada: this.favoritada
         });
 
         localStorage.setItem("vagas", JSON.stringify(vagas));
@@ -132,6 +134,7 @@ export default {
       this.salario = "";
       this.modalidade = "";
       this.tipo = "";
+      this.favoritada = false;
     },
   },
 };

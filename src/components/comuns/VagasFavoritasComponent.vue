@@ -35,7 +35,7 @@
             v-for="(vagaFavoritada, index) in vagasFavoritadas"
             :key="index"
           >
-            {{ vagaFavoritada }}
+            {{ vagaFavoritada.titulo }}
           </li>
         </ul>
       </div>
@@ -49,14 +49,40 @@ export default {
   data: () => ({
     vagasFavoritadas: [],
   }),
+  methods: {
+    updateLocalStorage(vaga) {
+      const vagas = JSON.parse(localStorage.getItem("vagas"));
+
+      let indexStorage = vagas
+        .map((vagaStorage) => vagaStorage.titulo)
+        .indexOf(vaga.titulo);
+
+      let vagaStorage = {};
+      vagaStorage = {
+        ...vagas[indexStorage],
+        favoritada: vaga.favoritada,
+      };
+
+      vagas[indexStorage] = vagaStorage;
+      localStorage.setItem("vagas", JSON.stringify(vagas));
+    },
+    getIndexArray(vaga) {
+      let indexArray = this.vagasFavoritadas
+        .map((vagaFavoritada) => vagaFavoritada.titulo)
+        .indexOf(vaga.titulo);
+      return indexArray;
+    },
+  },
   mounted() {
-    this.emitter.on("favoritarVaga", (titulo) => {
-      this.vagasFavoritadas.push(titulo);
+    this.emitter.on("favoritarVaga", (vaga) => {
+      this.updateLocalStorage(vaga);
+      if (this.getIndexArray(vaga) === -1) this.vagasFavoritadas.push(vaga);
     });
 
-    this.emitter.on("desfavoritarVaga", (titulo) => {
-      let indexArray = this.vagasFavoritadas.indexOf(titulo);
-      if (indexArray !== -1) this.vagasFavoritadas.splice(indexArray, 1);
+    this.emitter.on("desfavoritarVaga", (vaga) => {
+      this.updateLocalStorage(vaga);
+      if (this.getIndexArray(vaga) !== -1)
+        this.vagasFavoritadas.splice(this.getIndexArray(vaga), 1);
     });
   },
 };

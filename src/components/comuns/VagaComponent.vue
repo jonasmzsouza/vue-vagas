@@ -9,8 +9,9 @@
           <div class="form-check form-switch">
             <input
               type="checkbox"
+              role="switch"
               class="form-check-input"
-              v-model="favoritada"
+              v-model="checked"
             />
             <label for="" class="form-check-label">Favoritar</label>
           </div>
@@ -32,18 +33,6 @@
 <script>
 export default {
   name: "VagaComponent",
-  data: () => ({
-    favoritada: false,
-  }),
-  watch: {
-    favoritada(novoValor) {
-      if (novoValor) {
-        this.emitter.emit("favoritarVaga", this.titulo);
-      } else {
-        this.emitter.emit("desfavoritarVaga", this.titulo);
-      }
-    },
-  },
   props: {
     titulo: {
       type: String,
@@ -69,6 +58,42 @@ export default {
       type: String,
       required: true,
     },
+    favoritada: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data: () => ({
+    checked: false,
+  }),
+  watch: {
+    checked(novoValor) {
+      if (novoValor) {
+        this.emitter.emit("favoritarVaga", {
+          titulo: this.titulo,
+          favoritada: novoValor,
+        });
+      } else {
+        this.emitter.emit("desfavoritarVaga", {
+          titulo: this.titulo,
+          favoritada: novoValor,
+        });
+      }
+    },
+  },
+  mounted() {
+    if (this.favoritada) {
+      this.checked = true;
+    }
+  },
+  beforeUpdate() {
+    const vagas = JSON.parse(localStorage.getItem("vagas"));
+    let indexStorage = vagas
+      .map((vagaStorage) => vagaStorage.titulo)
+      .indexOf(this.titulo);
+
+    let vagaStorage = vagas[indexStorage];
+    this.checked = vagaStorage.favoritada;
   },
   computed: {
     getModalidade() {
