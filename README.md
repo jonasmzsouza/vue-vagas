@@ -9,7 +9,7 @@
 <hr>
 
 <p align="center"> 
-  <a href="https://vue-vagas.netlify.app/" target="_blank">
+  <a href="https://jonasmzsouza.github.io/vue-vagas" target="_blank">
     <img src="https://img.shields.io/static/v1?label=:&message=website&color=212529&style=for-the-badge&logo=netlify&logo-color=white"/>
   </a>
   <img  src="https://raw.githubusercontent.com/jonasmzsouza/jonasmzsouza.github.io/main/assets/images/vue-vagas.jpg"  width="100%"  alt="screenshot vue vagas">
