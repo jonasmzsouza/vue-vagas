@@ -6,11 +6,19 @@
       </div>
     </div>
 
-    <div class="row mt-5" v-for="(vaga, index) in vagas" :key="index">
-      <div class="col">
-        <vaga-card v-bind="vaga"></vaga-card>
-      </div>
-    </div>
+    <!-- <span>Multiple slots</span>
+    <vaga-list> 
+      <template v-slot:dadosVagas="slotProps">
+        {{ slotProps.vagas }}
+        <hr />
+      </template>
+      <template v-slot:default="slotProps">
+        {{ slotProps.vagas }}
+        <hr />
+      </template>
+    </vaga-list> -->
+
+    <vaga-list></vaga-list>
 
     <div class="row mt-5">
       <div class="col my-2">
@@ -46,14 +54,14 @@
 <script>
 import IndicadorCard from "@/components/IndicadorCard.vue";
 import PesquisarVagaForm from "@/components/PesquisarVagaForm.vue";
-import VagaCard from "@/components/VagaCard.vue";
+import VagaList from "@/components/VagaList.vue";
 
 export default {
   name: "HomePage",
   components: {
     IndicadorCard,
     PesquisarVagaForm,
-    VagaCard,
+    VagaList,
   },
   data: () => ({
     usuariosOnline: 0,
@@ -66,17 +74,6 @@ export default {
   },
   created() {
     setInterval(this.getUsuariosOnline, 1000);
-  },
-  mounted() {
-    this.emitter.on("filtrarVagas", (vaga) => {
-      const vagas = JSON.parse(localStorage.getItem("vagas"));
-      this.vagas = vagas.filter((reg) =>
-        reg.titulo.toLowerCase().includes(vaga.titulo.toLowerCase())
-      );
-    });
-  },
-  activated() {
-    this.vagas = JSON.parse(localStorage.getItem("vagas"));
   },
 };
 </script>
